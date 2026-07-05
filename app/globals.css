@@ -1,15 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0a0a0f;
-  --color-surface: #13131a;
-  --color-border: #25252e;
-  --color-text: #e7e7ea;
-  --color-muted: #9a9aa5;
-  --color-accent: #6ee7b7;
+  --color-bg: #0b0e1a;
+  --color-surface: #10142a;
+  --color-border: #242b4a;
+  --color-text: #e9ecf8;
+  --color-muted: #979fc0;
+  --color-accent: #8c93f8;
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-mono: ui-monospace, "JetBrains Mono", "Fira Code", monospace;
+  /* Domain accents: every project belongs to one domain, and the UI color-codes
+     filter tabs, card borders, and highlight markers with these. */
+  --color-agentic: #8c93f8;
+  --color-ml: #43c6b3;
+  --color-backend: #e5a758;
+
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "JetBrains Mono", monospace;
+  --font-display: var(--font-bricolage), var(--font-figtree), ui-sans-serif, sans-serif;
 }
 
 html {
@@ -21,9 +28,75 @@ body {
   color: var(--color-text);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  /* Faint dot grid: the blackboard the agents write on. */
+  background-image: radial-gradient(
+    circle,
+    rgb(140 147 248 / 0.055) 1px,
+    transparent 1px
+  );
+  background-size: 26px 26px;
 }
 
 ::selection {
   background-color: var(--color-accent);
   color: var(--color-bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Staggered entrance for the hero. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.rise-2 {
+  animation-delay: 0.1s;
+}
+
+.rise-3 {
+  animation-delay: 0.2s;
+}
+
+.rise-4 {
+  animation-delay: 0.3s;
+}
+
+/* Cursor of the blackboard trace panel. */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.caret {
+  animation: blink 1.1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .rise,
+  .caret {
+    animation: none;
+  }
 }

@@ -17,7 +17,7 @@ export const profile: Profile = {
   name: "Youssef Khalifa",
   role: "Software Engineer",
   tagline:
-    "Final-year software engineering student building production-grade systems end to end - from multi-agent AI pipelines to real-time collaborative platforms.",
+    "I build systems that check their own work: self-verifying multi-agent AI, confidence-weighted ML pipelines, and real-time backends shipped through CI.",
   about:
     "Final-year software engineering student at INSAT with experience across full-stack development, machine learning, and DevOps. I design and deliver systems from scratch, with a focus on clean architecture, performance, and end-to-end ownership. My recent work spans agentic AI orchestration, computer vision, and real-time backends.",
   email: "khalifayoussef628@gmail.com",
