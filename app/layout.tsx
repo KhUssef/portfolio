@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Figtree, IBM_Plex_Mono } from "next/font/google";
+import { IBM_Plex_Mono, Silkscreen } from "next/font/google";
 import { profile } from "@/data/profile";
 import "./globals.css";
 
-const display = Bricolage_Grotesque({
+const pixel = Silkscreen({
   subsets: ["latin"],
-  variable: "--font-bricolage",
-});
-
-const body = Figtree({
-  subsets: ["latin"],
-  variable: "--font-figtree",
+  weight: ["400", "700"],
+  variable: "--font-silkscreen",
 });
 
 const mono = IBM_Plex_Mono({
@@ -28,10 +24,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${display.variable} ${body.variable} ${mono.variable}`}
-    >
+    <html lang="en" className={`${pixel.variable} ${mono.variable}`}>
       <body>{children}</body>
     </html>
   );
