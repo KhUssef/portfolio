@@ -20,6 +20,24 @@ export type Project = {
 // hardcode a project in a component.
 export const projects: Project[] = [
   {
+    slug: "insight-agent",
+    name: "Insight Agent",
+    domain: "Agentic AI",
+    year: "2026",
+    summary:
+      "An agentic AI data analyst built on the Model Context Protocol: ask a question about a dataset in plain English and the agent plans, runs SQL, and draws charts in a tool-use loop until it can answer with evidence.",
+    highlights: [
+      "MCP end to end: a standalone MCP server exposes schema inspection, read-only SQL, and chart tools, and the agent host consumes them over the protocol - the same server plugs into Claude Desktop or Cursor.",
+      "Plan-call-observe loop written from scratch with no agent framework, with a read-only SQL guard enforced by parsing rather than by trusting the model.",
+      "Multi-format ingestion (CSV, Excel, TXT/TSV, JSON, Parquet) into DuckDB, with folder-bound chats so each conversation sees only its own tables.",
+      "React web UI streams the run live over Server-Sent Events: execution trace per LLM round, live SQL, charts as they render, and per-run token and effort accounting.",
+      "Rubric-based eval harness scores the agent on a fixed question set; 148 tests run without a network or API key, lint and type checks clean, CI on GitHub Actions.",
+    ],
+    tags: ["Python", "MCP", "DuckDB", "FastAPI", "SSE", "React", "DeepSeek", "pytest"],
+    repo: "https://github.com/KhUssef/insight-agent",
+    featured: true,
+  },
+  {
     slug: "quantumboard",
     name: "QuantumBoard",
     domain: "Agentic AI",
