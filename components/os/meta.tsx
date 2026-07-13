@@ -63,7 +63,7 @@ export function getWindowMeta(id: WindowId): WindowMeta {
     case "projects":
       return {
         title: "My Projects",
-        width: 460,
+        width: 560,
         icon: <FolderIcon />,
         render: (open) => <ProjectsFolder open={open} />,
       };

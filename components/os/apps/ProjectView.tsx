@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Project } from "@/data/projects";
 import { AppIcon, domainFill } from "@/components/os/icons";
 
@@ -15,6 +16,19 @@ export function ProjectView({ project }: { project: Project }) {
       </div>
 
       <p>{project.summary}</p>
+
+      {project.screenshots?.map((shot) => (
+        <figure key={shot.src} className="bevel-field p-1">
+          <Image
+            src={shot.src}
+            alt={shot.alt}
+            width={shot.width}
+            height={shot.height}
+            sizes="(max-width: 640px) 100vw, 580px"
+            className="w-full"
+          />
+        </figure>
+      ))}
 
       <fieldset className="group-box px-3 pt-1 pb-3">
         <legend className="px-1 text-[11px] font-bold">Highlights</legend>

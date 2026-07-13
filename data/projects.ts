@@ -3,6 +3,15 @@ export type Domain = "Agentic AI" | "Machine Learning" | "Backend";
 
 export const domains: Domain[] = ["Agentic AI", "Machine Learning", "Backend"];
 
+// A UI capture of the running project. Files live in public/screenshots/;
+// width and height are the intrinsic pixel dimensions of the file.
+export type Screenshot = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
 export type Project = {
   slug: string;
   name: string;
@@ -11,6 +20,7 @@ export type Project = {
   summary: string;
   highlights: string[];
   tags: string[];
+  screenshots?: Screenshot[];
   repo?: string;
   demo?: string;
   featured: boolean;
@@ -34,6 +44,20 @@ export const projects: Project[] = [
       "Rubric-based eval harness scores the agent on a fixed question set; 148 tests run without a network or API key, lint and type checks clean, CI on GitHub Actions.",
     ],
     tags: ["Python", "MCP", "DuckDB", "FastAPI", "SSE", "React", "DeepSeek", "pytest"],
+    screenshots: [
+      {
+        src: "/screenshots/insight-agent-workspace.png",
+        alt: "Insight Agent workspace answering a question about a dataset: chat history and data folder on the left, and an answer with a dataset summary table and monthly activity breakdown on the right.",
+        width: 1581,
+        height: 829,
+      },
+      {
+        src: "/screenshots/insight-agent-trace.png",
+        alt: "Insight Agent execution trace: the agent inspects the table schema, states its intent, then runs three SQL queries in sequence with row counts and timings.",
+        width: 1021,
+        height: 703,
+      },
+    ],
     repo: "https://github.com/KhUssef/insight-agent",
     featured: true,
   },
@@ -51,6 +75,14 @@ export const projects: Project[] = [
       "Blackboard pattern implemented from scratch, with no LangChain or LangGraph. Optional execution on real IBM Quantum hardware.",
     ],
     tags: ["Python", "Multi-agent", "Qiskit", "FastAPI", "SSE", "React", "Pydantic"],
+    screenshots: [
+      {
+        src: "/screenshots/quantumboard.png",
+        alt: "QuantumBoard run for the goal 'create a bell state on 2 qubits': the shared blackboard compares theory, simulator, and hardware distributions per basis state, marked VERIFIED, next to the spec sheet and generated QASM 3 circuit.",
+        width: 1828,
+        height: 909,
+      },
+    ],
     repo: "https://github.com/KhUssef/quantumborad",
     featured: true,
   },
@@ -68,6 +100,14 @@ export const projects: Project[] = [
       "ACK-Poll pattern keeps the UI responsive during slow itinerary generation; Next.js frontend with NextAuth authentication and Prisma-backed chat sessions.",
     ],
     tags: ["n8n", "Python", "FastAPI", "RAG", "FAISS", "Selenium", "Next.js", "Prisma"],
+    screenshots: [
+      {
+        src: "/screenshots/travel-planner-itinerary.png",
+        alt: "Travel planner chat presenting a finished 10-day Hakodate itinerary: trip summary with travelers and total estimate, a recommended hotel with reasoning, and an expandable day-by-day plan with weather and daily budget.",
+        width: 1810,
+        height: 913,
+      },
+    ],
     repo: "https://github.com/KhUssef/travel-planner",
     featured: true,
   },

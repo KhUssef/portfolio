@@ -15,9 +15,30 @@ const mono = IBM_Plex_Mono({
   variable: "--font-plex-mono",
 });
 
+// On Vercel the production URL is provided at build time; locally the links
+// resolve against the dev server.
+const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : "http://localhost:3000";
+
+const siteTitle = `youssefOS - ${profile.name}, ${profile.role}`;
+
 export const metadata: Metadata = {
-  title: `youssefOS - ${profile.name}, ${profile.role}`,
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
   description: profile.tagline,
+  openGraph: {
+    title: siteTitle,
+    description: profile.tagline,
+    url: "/",
+    siteName: "youssefOS",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: profile.tagline,
+  },
 };
 
 export default function RootLayout({

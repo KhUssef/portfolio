@@ -17,7 +17,7 @@ export function projectFileName(project: Project): string {
 export function ProjectsFolder({ open }: { open: OpenWindow }) {
   return (
     <div className="flex h-full flex-col">
-      <ul className="grid flex-1 grid-cols-3 content-start gap-1 p-3 sm:grid-cols-4">
+      <ul className="grid flex-1 grid-cols-3 content-start gap-1 p-3 sm:grid-cols-5">
         {projects.map((project) => (
           <li key={project.slug}>
             <button

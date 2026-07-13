@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { profile } from "@/data/profile";
 import type { AppId, OpenWindow } from "@/components/os/types";
 import {
@@ -75,6 +76,28 @@ export function StartMenu({ onOpen, onRestart, onClose }: StartMenuProps) {
               </button>
             </li>
           ))}
+          <li aria-hidden="true" className="mx-2 my-1 h-px bg-[var(--color-chrome-dark)]" />
+          <li>
+            <Link href="/cv" onClick={onClose} className={itemClass}>
+              <span className="h-5 w-5 shrink-0">
+                <TextFileIcon />
+              </span>
+              cv.doc
+            </Link>
+          </li>
+          <li>
+            <a
+              href="/resume/cv.pdf"
+              target="_blank"
+              onClick={onClose}
+              className={itemClass}
+            >
+              <span className="h-5 w-5 shrink-0">
+                <TextFileIcon />
+              </span>
+              cv.pdf
+            </a>
+          </li>
           <li aria-hidden="true" className="mx-2 my-1 h-px bg-[var(--color-chrome-dark)]" />
           {externalLinks.map((social) => (
             <li key={social.label}>

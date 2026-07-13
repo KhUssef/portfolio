@@ -53,8 +53,13 @@ body {
   background-color: var(--color-desktop);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  overflow: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+@media print {
+  body {
+    background-color: #ffffff;
+  }
 }
 
 ::selection {

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { profile } from "@/data/profile";
 import type { WindowId, WindowState } from "@/components/os/types";
 import { getWindowMeta } from "@/components/os/meta";
@@ -39,8 +40,8 @@ const externalShortcuts = profile.socials.filter(
 
 // Windows open on first visit, cascaded so both stay visible.
 const initialWindows: WindowState[] = [
-  { id: "projects", x: 470, y: 170, z: 1, minimized: false },
-  { id: "welcome", x: 150, y: 70, z: 2, minimized: false },
+  { id: "projects", x: 470, y: 170, z: 1, minimized: false, maximized: false },
+  { id: "welcome", x: 150, y: 70, z: 2, minimized: false, maximized: false },
 ];
 
 const shortcutClass =
@@ -91,6 +92,7 @@ export function Desktop() {
             y: 40 + offset * 38,
             z: zRef.current,
             minimized: false,
+            maximized: false,
           },
         ];
       });
@@ -117,6 +119,14 @@ export function Desktop() {
     );
   }, []);
 
+  const toggleMaximize = useCallback((id: WindowId) => {
+    setWins((current) =>
+      current.map((win) =>
+        win.id === id ? { ...win, maximized: !win.maximized } : win,
+      ),
+    );
+  }, []);
+
   const visible = wins.filter((win) => !win.minimized);
   const activeId =
     visible.length > 0
@@ -133,6 +143,22 @@ export function Desktop() {
     },
     [activeId, focusWindow, minimizeWindow],
   );
+
+  // Esc dismisses the start menu first, then the active window.
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Escape" || booting) return;
+      if (startOpen) {
+        setStartOpen(false);
+        return;
+      }
+      if (activeId !== null) {
+        closeWindow(activeId);
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [booting, startOpen, activeId, closeWindow]);
 
   const restart = useCallback(() => {
     window.sessionStorage.removeItem("youssefos-booted");
@@ -158,6 +184,18 @@ export function Desktop() {
             <span className={labelClass}>{shortcut.label}</span>
           </button>
         ))}
+        <Link href="/cv" className={shortcutClass}>
+          <span className="h-8 w-8">
+            <TextFileIcon />
+          </span>
+          <span className={labelClass}>cv.doc</span>
+        </Link>
+        <a href="/resume/cv.pdf" target="_blank" className={shortcutClass}>
+          <span className="h-8 w-8">
+            <TextFileIcon />
+          </span>
+          <span className={labelClass}>cv.pdf</span>
+        </a>
         {externalShortcuts.map((social) => (
           <a
             key={social.label}
@@ -196,7 +234,11 @@ export function Desktop() {
               z={win.z}
               width={meta.width}
               active={win.id === activeId}
-              fullscreen={small}
+              fullscreen={small || win.maximized}
+              maximized={win.maximized}
+              onToggleMaximize={
+                small ? undefined : () => toggleMaximize(win.id)
+              }
               onClose={() => closeWindow(win.id)}
               onMinimize={() => minimizeWindow(win.id)}
               onFocus={() => {

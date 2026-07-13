@@ -16,6 +16,7 @@ export type WindowState = {
   y: number;
   z: number;
   minimized: boolean;
+  maximized: boolean;
 };
 
 export type OpenWindow = (id: WindowId) => void;

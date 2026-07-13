@@ -12,6 +12,9 @@ type WindowProps = {
   width: number;
   active: boolean;
   fullscreen: boolean;
+  maximized: boolean;
+  // Absent on small screens, where every window is fullscreen anyway.
+  onToggleMaximize?: () => void;
   onClose: () => void;
   onMinimize: () => void;
   onFocus: () => void;
@@ -28,6 +31,8 @@ export function Window({
   width,
   active,
   fullscreen,
+  maximized,
+  onToggleMaximize,
   onClose,
   onMinimize,
   onFocus,
@@ -96,6 +101,46 @@ export function Window({
             <rect x="0" y="6" width="8" height="2" fill="var(--color-ink)" />
           </svg>
         </button>
+        {onToggleMaximize ? (
+          <button
+            type="button"
+            aria-label={
+              maximized ? `Restore ${title}` : `Maximize ${title}`
+            }
+            onClick={onToggleMaximize}
+            className="bevel-out flex h-5 w-5 items-center justify-center active:shadow-[var(--shadow-in)]"
+          >
+            {maximized ? (
+              <svg viewBox="0 0 8 8" aria-hidden="true" className="h-2 w-2">
+                <path
+                  d="M2.5 2.5 V0.5 H7.5 V5.5 H5.5"
+                  fill="none"
+                  stroke="var(--color-ink)"
+                />
+                <rect
+                  x="0.5"
+                  y="2.5"
+                  width="5"
+                  height="5"
+                  fill="none"
+                  stroke="var(--color-ink)"
+                />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 8 8" aria-hidden="true" className="h-2 w-2">
+                <rect
+                  x="0.5"
+                  y="0.5"
+                  width="7"
+                  height="7"
+                  fill="none"
+                  stroke="var(--color-ink)"
+                />
+                <rect x="0" y="0" width="8" height="2" fill="var(--color-ink)" />
+              </svg>
+            )}
+          </button>
+        ) : null}
         <button
           type="button"
           aria-label={`Close ${title}`}
