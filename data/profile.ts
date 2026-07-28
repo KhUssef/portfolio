@@ -24,6 +24,10 @@ export const profile: Profile = {
   location: "Tunis, Tunisia",
   socials: [
     { label: "GitHub", href: "https://github.com/KhUssef" },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/youssef-khalifa-840a75217/",
+    },
     { label: "Email", href: "mailto:khalifayoussef628@gmail.com" },
   ],
 };
