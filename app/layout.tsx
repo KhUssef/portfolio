@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Silkscreen } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { profile } from "@/data/profile";
 import "./globals.css";
 
@@ -46,7 +47,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${pixel.variable} ${mono.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
