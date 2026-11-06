@@ -8,7 +8,10 @@ export type Profile = {
   role: string;
   tagline: string;
   about: string;
+  availability: string;
   email: string;
+  phone: string;
+  website: string;
   location: string;
   socials: SocialLink[];
 };
@@ -19,8 +22,12 @@ export const profile: Profile = {
   tagline:
     "I build systems that check their own work: self-verifying multi-agent AI, confidence-weighted ML pipelines, and real-time backends shipped through CI.",
   about:
-    "Final-year software engineering student at INSAT with experience across full-stack development, machine learning, and DevOps. I design and deliver systems from scratch, with a focus on clean architecture, performance, and end-to-end ownership. My recent work spans agentic AI orchestration, computer vision, and real-time backends.",
+    "Final-year software engineering student at INSAT, building multi-agent AI systems and RAG pipelines on top of production backend engineering: LLM orchestration, retrieval services, containerised deployment, and CI/CD. I ship systems end to end, from architecture to running interface.",
+  availability:
+    "Available for a 6-month engineering internship (end-of-studies thesis), February - July 2027.",
   email: "khalifayoussef628@gmail.com",
+  phone: "+216 50 196 402",
+  website: "https://khalifa-youssef.vercel.app",
   location: "Tunis, Tunisia",
   socials: [
     { label: "GitHub", href: "https://github.com/KhUssef" },

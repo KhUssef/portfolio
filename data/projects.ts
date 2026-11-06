@@ -65,16 +65,17 @@ export const projects: Project[] = [
     slug: "quantumboard",
     name: "QuantumBoard",
     domain: "Agentic AI",
-    year: "2025",
+    year: "2026",
     summary:
       "A blackboard multi-agent system that turns a natural-language goal into a verified quantum circuit, debugging itself until the measured distribution matches the spec.",
     highlights: [
-      "Blackboard architecture: agents never call each other, they read and write shared state while a controller decides who acts next.",
+      "Blackboard architecture: specialist agents (decomposition, synthesis, optimisation, verification) never call each other, they contribute incrementally to a shared circuit state while a controller decides who acts next.",
+      "Circuit construction and execution with Qiskit against the IBM Quantum backend, including oracle construction and transpilation for real device topologies.",
       "Self-verifying loop with statistical verification (total variation distance), a livelock guard, and run budgets.",
       "FastAPI and Server-Sent Events stream the blackboard live to a React frontend.",
-      "Blackboard pattern implemented from scratch, with no LangChain or LangGraph. Optional execution on real IBM Quantum hardware.",
+      "Blackboard pattern implemented from scratch, with no LangChain or LangGraph.",
     ],
-    tags: ["Python", "Multi-agent", "Qiskit", "FastAPI", "SSE", "React", "Pydantic"],
+    tags: ["Python", "Multi-agent", "Qiskit", "IBM Quantum", "FastAPI", "SSE", "React", "Pydantic", "Docker"],
     screenshots: [
       {
         src: "/screenshots/quantumboard.png",
@@ -96,10 +97,12 @@ export const projects: Project[] = [
     highlights: [
       "Five specialised agents orchestrated in n8n - request analysis, preference interview, retrieval, recommendation, and planning - each owning one step and handing off to the next.",
       "Offline knowledge pipeline: Wikivoyage scrape, LLM tagging with tourism categories, Qwen embeddings, and a FAISS vector index served through a FastAPI retrieval endpoint.",
+      "Per-domain RAG agents powered by a DeepSeek LLM, with scheduled Python scraping pipelines (Playwright, BeautifulSoup) continuously harvesting and embedding live travel data.",
       "Live data layer scrapes Booking.com hotels and attractions with Selenium and pulls flights (SerpAPI) and weather (Open-Meteo) at planning time.",
-      "ACK-Poll pattern keeps the UI responsive during slow itinerary generation; Next.js frontend with NextAuth authentication and Prisma-backed chat sessions.",
+      "Orchestration graph restructured for parallel per-city execution to eliminate workflow timeouts.",
+      "Webhook acknowledgement plus SSE polling (ACK-Poll) keeps the UI responsive during slow itinerary generation; Next.js frontend with NextAuth authentication and Prisma-backed chat sessions.",
     ],
-    tags: ["n8n", "Python", "FastAPI", "RAG", "FAISS", "Selenium", "Next.js", "Prisma"],
+    tags: ["n8n", "Python", "FastAPI", "RAG", "FAISS", "DeepSeek", "SerpAPI", "Playwright", "Selenium", "Next.js", "Prisma"],
     screenshots: [
       {
         src: "/screenshots/travel-planner-itinerary.png",
@@ -121,7 +124,7 @@ export const projects: Project[] = [
     highlights: [
       "Uniform frame sampling with OpenCV, then face detection and spatial normalisation as preprocessing into a fine-tuned EfficientNet classifier.",
       "Confidence-weighted voting across per-frame predictions yields a robust video-level verdict, reducing false positives from isolated frame noise.",
-      "Web application with a Python backend and a responsive frontend showing frame-level confidence scores and detection heatmaps.",
+      "Web application with a Flask backend and a responsive frontend supporting video upload, inference, and visualisation of frame-level confidence scores and detection heatmaps.",
     ],
     tags: ["Python", "EfficientNet", "TensorFlow", "Keras", "OpenCV", "Flask"],
     repo: "https://github.com/KhUssef/deepfake-detection",

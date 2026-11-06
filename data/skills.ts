@@ -7,22 +7,40 @@ export type SkillGroup = {
 export const skills: SkillGroup[] = [
   {
     category: "Languages",
-    items: ["Python", "JavaScript", "TypeScript", "Java", "C#", "C", "C++"],
+    items: ["Python", "TypeScript", "JavaScript", "C#", "Java", "C", "C++"],
   },
   {
     category: "Backend",
-    items: ["Node.js", "NestJS", "FastAPI", "Spring Boot", "ASP.NET / .NET", "PHP", "Flask"],
+    items: ["Node.js", "NestJS", "FastAPI", "ASP.NET / .NET", "Spring Boot", "Flask", "PHP"],
+  },
+  {
+    category: "Frontend",
+    items: ["Next.js", "React", "Angular"],
+  },
+  {
+    category: "Mobile & Game Dev",
+    items: ["Flutter", "Unity"],
   },
   {
     category: "Databases",
-    items: ["MySQL", "MSSQL", "PostgreSQL", "Stored procedures", "Indexed views", "CTEs"],
+    items: [
+      "MySQL",
+      "PostgreSQL",
+      "MSSQL",
+      "Indexing strategy",
+      "Triggers",
+      "Stored procedures",
+      "Indexed views",
+      "CTEs",
+      "Window functions",
+    ],
   },
   {
     category: "AI / ML",
     items: [
+      "Multi-agent orchestration",
       "RAG pipelines",
-      "FAISS",
-      "Vector DB",
+      "Vector DB (FAISS)",
       "TensorFlow / Keras",
       "EfficientNet",
       "Scikit-learn",
@@ -32,15 +50,15 @@ export const skills: SkillGroup[] = [
     ],
   },
   {
+    category: "Quantum",
+    items: ["Qiskit", "IBM Quantum", "Oracle construction", "Circuit transpilation"],
+  },
+  {
     category: "Automation",
-    items: ["n8n", "Playwright", "Selenium", "BeautifulSoup"],
+    items: ["n8n", "Playwright", "Selenium", "BeautifulSoup", "Firecrawl"],
   },
   {
     category: "DevOps & Cloud",
     items: ["GitHub Actions", "Docker", "Kubernetes", "Jenkins", "AWS"],
-  },
-  {
-    category: "Mobile",
-    items: ["Flutter"],
   },
 ];

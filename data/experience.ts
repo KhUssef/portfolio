@@ -8,6 +8,16 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
+    role: "Backend Developer",
+    company: "Melyn",
+    period: "May 2026 - Present",
+    highlights: [
+      "Building and maintaining backend services and REST APIs in .NET.",
+      "Contributing to DevOps work supporting the team's deployment and infrastructure.",
+    ],
+    tags: [".NET", "C#", "REST APIs", "DevOps"],
+  },
+  {
     role: "Software Engineering Intern",
     company: "WeeFizz",
     period: "Jun 2025 - Aug 2025",

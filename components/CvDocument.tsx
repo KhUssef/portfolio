@@ -2,6 +2,7 @@ import { profile } from "@/data/profile";
 import { projects } from "@/data/projects";
 import { experience } from "@/data/experience";
 import { skills } from "@/data/skills";
+import { education, certifications } from "@/data/education";
 
 type CvDocumentProps = {
   // When false, contact and repo references render as plain text instead of
@@ -43,10 +44,21 @@ export function CvDocument({ interactive = true }: CvDocumentProps) {
         </p>
         <p className="mt-4">{profile.tagline}</p>
         <p className="mt-2">{profile.about}</p>
+        <p className="mt-2 italic">{profile.availability}</p>
         <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs">
           <Reference
             href={`mailto:${profile.email}`}
             label={profile.email}
+            interactive={interactive}
+          />
+          <Reference
+            href={`tel:${profile.phone.replace(/\s/g, "")}`}
+            label={profile.phone}
+            interactive={interactive}
+          />
+          <Reference
+            href={profile.website}
+            label={profile.website.replace("https://", "")}
             interactive={interactive}
           />
           {profile.socials
@@ -61,6 +73,37 @@ export function CvDocument({ interactive = true }: CvDocumentProps) {
             ))}
         </p>
       </header>
+
+      <section>
+        <h2 className="border-b border-[var(--color-chrome-dark)] pb-1 font-pixel text-base font-bold">
+          Experience
+        </h2>
+        <div className="mt-4 space-y-6">
+          {experience.map((job) => (
+            <article key={`${job.company}-${job.period}`}>
+              <h3 className="font-bold">
+                {job.role}, {job.company}{" "}
+                <span className="font-normal text-[var(--color-ink-muted)]">
+                  ({job.period})
+                </span>
+              </h3>
+              <ul className="mt-2 space-y-1">
+                {job.highlights.map((highlight) => (
+                  <li
+                    key={highlight}
+                    className="relative pl-4 before:absolute before:left-0 before:content-['-']"
+                  >
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-2 font-mono text-xs text-[var(--color-ink-muted)]">
+                {job.tags.join(", ")}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
 
       <section>
         <h2 className="border-b border-[var(--color-chrome-dark)] pb-1 font-pixel text-base font-bold">
@@ -106,37 +149,6 @@ export function CvDocument({ interactive = true }: CvDocumentProps) {
 
       <section>
         <h2 className="border-b border-[var(--color-chrome-dark)] pb-1 font-pixel text-base font-bold">
-          Experience
-        </h2>
-        <div className="mt-4 space-y-6">
-          {experience.map((job) => (
-            <article key={`${job.company}-${job.period}`}>
-              <h3 className="font-bold">
-                {job.role}, {job.company}{" "}
-                <span className="font-normal text-[var(--color-ink-muted)]">
-                  ({job.period})
-                </span>
-              </h3>
-              <ul className="mt-2 space-y-1">
-                {job.highlights.map((highlight) => (
-                  <li
-                    key={highlight}
-                    className="relative pl-4 before:absolute before:left-0 before:content-['-']"
-                  >
-                    {highlight}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-2 font-mono text-xs text-[var(--color-ink-muted)]">
-                {job.tags.join(", ")}
-              </p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <h2 className="border-b border-[var(--color-chrome-dark)] pb-1 font-pixel text-base font-bold">
           Skills
         </h2>
         <dl className="mt-4 space-y-2">
@@ -147,6 +159,37 @@ export function CvDocument({ interactive = true }: CvDocumentProps) {
             </div>
           ))}
         </dl>
+      </section>
+      <section>
+        <h2 className="border-b border-[var(--color-chrome-dark)] pb-1 font-pixel text-base font-bold">
+          Education & Certifications
+        </h2>
+        <div className="mt-4 space-y-3">
+          {education.map((entry) => (
+            <article key={entry.school}>
+              <h3 className="font-bold">
+                {entry.school}
+                {entry.period ? (
+                  <span className="font-normal text-[var(--color-ink-muted)]">
+                    {" "}
+                    ({entry.period})
+                  </span>
+                ) : null}
+              </h3>
+              <p>{entry.degree}</p>
+            </article>
+          ))}
+        </div>
+        <ul className="mt-4 space-y-1">
+          {certifications.map((certification) => (
+            <li
+              key={certification}
+              className="relative pl-4 before:absolute before:left-0 before:content-['-']"
+            >
+              {certification}
+            </li>
+          ))}
+        </ul>
       </section>
     </article>
   );
