@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.2.1",
     "@vercel/analytics": "^2.0.1",
     "next": "^15.3.0",
     "react": "^19.1.0",
