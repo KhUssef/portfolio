@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono, Silkscreen } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { profile } from "@/data/profile";
+import { Tracker } from "@/components/Tracker";
 import "./globals.css";
 
 const pixel = Silkscreen({
@@ -50,6 +51,7 @@ export default function RootLayout({
       <body>
         {children}
         <Analytics />
+        <Tracker />
       </body>
     </html>
   );
