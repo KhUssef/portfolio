@@ -4,8 +4,10 @@
 // Email security scanners (Outlook / Microsoft Defender Safe Links,
 // Proofpoint, Mimecast, Barracuda, Gmail's image proxy, ...) open every link
 // in an email before the recipient does. Some announce themselves in the
-// user agent; the rest spoof a browser but skip headers that every modern
-// browser sends on a real navigation (Sec-Fetch-*, Accept-Language).
+// user agent; the rest spoof a browser but skip the Sec-Fetch-* headers that
+// every modern browser sends on a real navigation. Accept-Language is not a
+// signal: in-app browsers such as the Google app on iOS omit it on the first
+// page load.
 
 const SCANNER_UA =
   /(microsoft office|ms-office|outlook|safelinks|office365|proofpoint|mimecast|barracuda|googleimageproxy|google-safety|ymailing|symantec|forcepoint|trend ?micro|sophos|fireeye|ironport|cisco|zscaler|messagelabs|checkpoint|bitdefender|kaspersky|avast|norton)/i;
@@ -25,7 +27,6 @@ export function botReason(headers: Headers, method: string): string | null {
 
   if (method === "HEAD") return "head";
   if (!headers.get("sec-fetch-mode")) return "no-sec-fetch";
-  if (!headers.get("accept-language")) return "no-lang";
 
   return null;
 }

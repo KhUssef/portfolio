@@ -21,6 +21,9 @@ create table if not exists hits (
 alter table hits add column if not exists is_bot boolean not null default false;
 alter table hits add column if not exists bot_reason text;
 create index if not exists hits_token_idx on hits (token, ts);
+-- A missing Accept-Language is not a bot signal (see lib/bot.ts).
+update hits set is_bot = false, bot_reason = null where bot_reason = 'no-lang';
+update events set is_bot = false, bot_reason = null where bot_reason = 'no-lang';
 
 -- One row per client-side event sent by components/Tracker.tsx: a "view" when
 -- a page renders in a real browser, a "click" for every button or link press.
